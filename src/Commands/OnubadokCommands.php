@@ -4,16 +4,17 @@ use Illuminate\Console\Command;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
 
-class OnubadokCommands extends Command{
+class OnubadokCommands extends Command
+{
     protected $signature = 'onubadok:generate';
-    protected $description = 'generate Bengali and English files using your custom command';
+    protected $description = 'Generate Bengali and English files using your custom command';
     private Filesystem $fileSystem;
 
     public function __construct()
     {
         parent::__construct();
 
-        $this->fileSystem  = new Filesystem();
+        $this->fileSystem = new Filesystem();
     }
 
     /**
@@ -25,27 +26,29 @@ class OnubadokCommands extends Command{
         $filesystem = new Filesystem();
         $base_folder = base_path() . '/lang';
 
-
         // Check if the directory already exists
         if ($filesystem->exists($base_folder)) {
             $this->error('The directory already exists');
-        }
-        else{
-            // Creating app/lang/en directory and generating files
-            if ($this->generateFilesWithContents($base_folder, 'en')) {
-                $this->info('The files were generated successfully in the app/lang/en directory');
+        } else {
+            if(!$this->generateController()){
+                $this->error('Unable to generate the OnubadokController');
             }
             else{
-                $this->error('The files were not generated');
-            }
+                // Creating app/lang/en directory and generating files
+                $this->info('Generating files in the app/lang/en directory ...');
+                if ($this->generateFilesWithContents($base_folder, 'en')) {
+                    $this->info('The files were generated successfully in the app/lang/en directory');
+                } else {
+                    $this->error('The files were not generated');
+                }
 
-            // Creating app/lang/bn directory and generating files
-
-            if ($this->generateFilesWithContents($base_folder, 'bn')) {
-                $this->info('The files were generated successfully in the app/lang/bn directory');
-            }
-            else{
-                $this->error('The files were not generated');
+                // Creating app/lang/bn directory and generating files
+                $this->info('Generating files in the app/lang/bn directory ...');
+                if ($this->generateFilesWithContents($base_folder, 'bn')) {
+                    $this->info('The files were generated successfully in the app/lang/bn directory');
+                } else {
+                    $this->error('The files were not generated');
+                }
             }
         }
     }
@@ -55,7 +58,7 @@ class OnubadokCommands extends Command{
      */
     public function generateFilesWithContents($base_folder, $language): bool
     {
-        $package_folder = __DIR__ . '/../lang/'.$language.'/';
+        $package_folder = __DIR__ . '/../lang/' . $language . '/';
         $success = 0;
 
         // generate the directory
@@ -71,13 +74,32 @@ class OnubadokCommands extends Command{
 
             // generate the file in the app folder
             $content_folder = $base_folder . '/' . $language;
-            if($this->fileSystem->put($content_folder . '/' . $file_name, $file_contents))
+            $content_file_name = $content_folder . '/' . $file_name;
+
+            if ($this->fileSystem->put($content_file_name, $file_contents)) {
+                $this->line('* lang/' . $language . '/' . $file_name . ' generated successfully!');
                 $success++;
+            }
+
         }
 
         if ($success == count($files))
             return true;
         else
             return false;
+    }
+
+    /**
+     * @throws FileNotFoundException
+     */
+    public function generateController(): bool
+    {
+        $app_folder = app_path() . '/Http/Controllers/';
+        $package_folder = __DIR__ . '/../Controllers/';
+
+        $contents = $this->fileSystem->get($package_folder . 'OnubadokController.php');
+
+        // generate the file
+        return $this->fileSystem->put($app_folder . 'OnubadokController.php', $contents);
     }
 }
