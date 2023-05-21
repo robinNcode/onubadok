@@ -1,0 +1,26 @@
+{
+    "name": "robin/onubadok",
+    "description": "This is composer package for translate your PHP software to other languages. Primarily in bengali language.",
+    "type": "composer-plugin",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Robin\\Onubadok\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "MsM Robin",
+            "email": "msmrobin518@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Robinncode\\Onubadok\\OnubadokServiceProvider"
+            ]
+        }
+    }
+}
