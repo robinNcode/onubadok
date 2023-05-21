@@ -16,8 +16,15 @@
         }
     ],
     "minimum-stability": "stable",
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "require-dev": {
+    },
     "require": {
-        "php": ">=7.4"
+        "php": ">=7.4",
+        "illuminate/support": "^8.0"
     },
     "extra": {
         "laravel": {
@@ -29,7 +36,8 @@
     "keywords": [
         "translation",
         "language",
-        "localization"
+        "localization",
+        "laravel"
     ],
     "homepage": "https://github.com/robinNcode/onubadok",
     "repository": "https://github.com/robinNcode/onubadok.git",
