@@ -1,5 +1,5 @@
 {
-    "name": "robin/onubadok",
+    "name": "robinncode/onubadok",
     "description": "This is composer package for translate your PHP software to other languages. Primarily in bengali language.",
     "type": "composer-plugin",
     "license": "MIT",

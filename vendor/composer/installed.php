@@ -1,19 +1,19 @@
 <?php return array(
     'root' => array(
-        'name' => 'robin/onubadok',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => NULL,
+        'name' => 'robinncode/onubadok',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'reference' => '136302de6f063ee48007b496ee34229891374be8',
         'type' => 'composer-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-        'robin/onubadok' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => NULL,
+        'robinncode/onubadok' => array(
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => '136302de6f063ee48007b496ee34229891374be8',
             'type' => 'composer-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
