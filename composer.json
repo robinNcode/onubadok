@@ -2,7 +2,7 @@
     "name": "robinncode/onubadok",
     "description": "This is a Composer package for translating your PHP software to other languages, primarily in Bengali.",
     "version": "1.0.0",
-    "type": "composer-plugin",
+    "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
