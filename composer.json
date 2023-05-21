@@ -22,8 +22,7 @@
     "require-dev": {
     },
     "require": {
-        "php": ">=7.4",
-        "illuminate/support": "^8.0"
+        "php": ">=7.4"
     },
     "extra": {
         "laravel": {
