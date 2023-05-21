@@ -15,7 +15,6 @@
             "email": "msmrobin518@gmail.com"
         }
     ],
-    "minimum-stability": "stable",
     "config": {
         "optimize-autoloader": true,
         "sort-packages": true
