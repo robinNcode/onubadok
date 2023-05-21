@@ -17,8 +17,7 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "php": ">=7.4",
-        "robinncode/onubadok": "^1.0"
+        "php": ">=7.4"
     },
     "extra": {
         "laravel": {
