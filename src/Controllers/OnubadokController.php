@@ -1,10 +1,21 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 
+/**
+ * Class OnubadokController
+ * @package App\Http\Controllers
+ * @property string $language
+ * @generated_by Robinncode\Onubadok
+ */
 class OnubadokController extends Controller
 {
-    public function change($language): \Illuminate\Http\RedirectResponse
+    /**
+     * To change the language ...
+     * @param $language
+     * @return RedirectResponse
+     */
+    public function change($language): RedirectResponse
     {
         session(['language' => $language]);
         app()->setLocale($language);

@@ -2,6 +2,7 @@
 
 
 use Illuminate\Support\ServiceProvider;
+use Robinncode\Onubadok\Commands\ControllerPublish;
 use Robinncode\Onubadok\Commands\OnubadokCommands;
 
 class OnubadokServiceProvider extends ServiceProvider {
@@ -26,6 +27,7 @@ class OnubadokServiceProvider extends ServiceProvider {
         if ($this->app->runningInConsole()) {
             $this->commands([
                 OnubadokCommands::class,
+                ControllerPublish::class
             ]);
         }
     }

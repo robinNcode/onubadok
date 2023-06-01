@@ -29,44 +29,39 @@ class OnubadokCommands extends Command
 
         if ($language == null) {
             $this->error('Please provide a language code');
-        }
-        else{
+        } else {
             $folders = ['en', $language];
             $this->generating($folders, $base_folder);
         }
     }
 
-    // generate the files in the app folder with the contents of the package files
-
     /**
+     * Generate the files in the app folder with the contents of the package files
      * @throws FileNotFoundException
      */
     protected function generating($folders, $base_folder): void
     {
         // Check if the directory already exists then override the base folder
-        if (!$this->generateController()) {
-            $this->error('Unable to generate the OnubadokController');
-        } else {
-            foreach ($folders as $language) {
-                if ($this->fileSystem->exists($base_folder . '/' . $language)) {
-                    $this->info('The directory already exists');
-                    $this->info('Overriding the base folder');
-                    $base_folder = $base_folder . '/' . $language;
-                    break;
+        foreach ($folders as $language) {
+            if ($this->fileSystem->exists($base_folder . '/' . $language)) {
+                $this->info('The directory already exists');
+                $this->info('Overriding the base folder');
+                $base_folder = $base_folder . '/' . $language;
+                break;
+            } else {
+                // Creating app/lang/en directory and generating files
+                $this->info('Generating files in the app/lang/' . $language . ' directory ...');
+                if ($this->generateFilesWithContents($base_folder, $language)) {
+                    $this->info('The files were generated successfully in the app/lang/' . $language . ' directory');
                 } else {
-                    // Creating app/lang/en directory and generating files
-                    $this->info('Generating files in the app/lang/' . $language . ' directory ...');
-                    if ($this->generateFilesWithContents($base_folder, $language)) {
-                        $this->info('The files were generated successfully in the app/lang/' . $language . ' directory');
-                    } else {
-                        $this->error('The files were not generated');
-                    }
+                    $this->error('The files were not generated');
                 }
             }
         }
     }
 
     /**
+     * To generate files with contents ...
      * @throws FileNotFoundException
      */
     public
@@ -101,20 +96,5 @@ class OnubadokCommands extends Command
             return true;
         else
             return false;
-    }
-
-    /**
-     * @throws FileNotFoundException
-     */
-    public
-    function generateController(): bool
-    {
-        $app_folder = app_path() . '/Http/Controllers/';
-        $package_folder = __DIR__ . '/../Controllers/';
-
-        $contents = $this->fileSystem->get($package_folder . 'OnubadokController.php');
-
-        // generate the file
-        return $this->fileSystem->put($app_folder . 'OnubadokController.php', $contents);
     }
 }
