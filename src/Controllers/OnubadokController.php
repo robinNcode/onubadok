@@ -4,7 +4,7 @@ use App\Http\Controllers\Controller;
 
 class OnubadokController extends Controller
 {
-    public function changeLanguage($language): \Illuminate\Http\RedirectResponse
+    public function change($language): \Illuminate\Http\RedirectResponse
     {
         session(['language' => $language]);
         app()->setLocale($language);
