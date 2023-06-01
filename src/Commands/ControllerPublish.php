@@ -23,15 +23,21 @@ class ControllerPublish extends Command{
      */
     public function handle(): void
     {
-        if(!$this->generateController() && !$this->generateAppController()){
+        if(!$this->generateController()){
             $this->error('The controller was not generated!');
         }
         else{
-            if(!$this->generateRoute()){
-                $this->error('The route was not generated!');
+            if(!$this->generateAppController())
+            {
+                $this->error('The AppController was not generated!');
             }
             else{
-                $this->info('The controller and route were generated successfully!');
+                if(!$this->generateRoute()){
+                    $this->error('The route was not generated!');
+                }
+                else{
+                    $this->info('The controller and route were generated successfully!');
+                }
             }
         }
     }
