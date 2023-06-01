@@ -12,4 +12,6 @@ return [
     'Bank Information' => 'ব্যাঙ্কের তথ্য',
     'Add Bank' => 'ব্যাঙ্ক যোগ',
     'Bank Info Update' =>  'ব্যাঙ্ক তথ্য আপডেট',
+
+    'Documentation' => 'ডকুমেন্টেশন',
 ];

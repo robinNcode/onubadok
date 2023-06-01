@@ -18,8 +18,6 @@ class OnubadokController extends Controller
     public function change($language): RedirectResponse
     {
         session(['language' => $language]);
-        app()->setLocale($language);
-
-        return redirect()->back();
+        return redirect()->to('/');
     }
 }

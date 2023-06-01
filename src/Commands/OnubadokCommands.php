@@ -28,7 +28,7 @@ class OnubadokCommands extends Command
         $language = $this->argument('language');
 
         if ($language == null) {
-            $this->error('Please provide a language code');
+            $this->error('Please provide a language code.');
         } else {
             $folders = ['en', $language];
             $this->generating($folders, $base_folder);
@@ -44,17 +44,17 @@ class OnubadokCommands extends Command
         // Check if the directory already exists then override the base folder
         foreach ($folders as $language) {
             if ($this->fileSystem->exists($base_folder . '/' . $language)) {
-                $this->info('The directory already exists');
-                $this->info('Overriding the base folder');
+                $this->info('The directory already exists.');
+                $this->info('Overriding the base folder.');
                 $base_folder = $base_folder . '/' . $language;
                 break;
             } else {
                 // Creating app/lang/en directory and generating files
-                $this->info('Generating files in the app/lang/' . $language . ' directory ...');
+                $this->info('Generating files in the app/lang/' . $language . ' directory...');
                 if ($this->generateFilesWithContents($base_folder, $language)) {
-                    $this->info('The files were generated successfully in the app/lang/' . $language . ' directory');
+                    $this->info('The files were generated successfully in the app/lang/' . $language . ' directory.');
                 } else {
-                    $this->error('The files were not generated');
+                    $this->error('The files were not generated.');
                 }
             }
         }

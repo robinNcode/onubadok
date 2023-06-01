@@ -12,4 +12,6 @@ return [
     'Bank Information' => 'Bank Information',
     'Add Bank' =>  'Add Bank',
     'Bank Info Update' =>  'Bank Info Update',
+
+    'Documentation' => 'Documentation',
 ];

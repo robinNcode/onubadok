@@ -23,7 +23,7 @@ class ControllerPublish extends Command{
      */
     public function handle(): void
     {
-        if(!$this->generateController()){
+        if(!$this->generateController() && !$this->generateAppController()){
             $this->error('The controller was not generated!');
         }
         else{
@@ -59,16 +59,30 @@ class ControllerPublish extends Command{
     public function generateRoute(): bool
     {
         $app_folder = base_path() . '/routes/';
-        $package_folder = __DIR__ . '/../routes/';
 
         // Read the existing contents of web.php
         $existingContents = $this->fileSystem->get($app_folder . 'web.php');
 
         // Append new lines to the existing contents
-        $newContents = $existingContents . "\n\n" . "Route::get('/onubadok/change/{lang}', 'OnubadokController@change');";
+        $newContents = $existingContents . "\n\n" . "Route::get('onubadok/change/{lang}', 'App\Http\Controllers\OnubadokController@change');";
 
         // Generate the updated file
         return $this->fileSystem->put($app_folder . 'web.php', $newContents);
+    }
+
+    /**
+     * To generate the AppController ...
+     * @throws FileNotFoundException
+     */
+    public function generateAppController(): bool
+    {
+        $app_folder = app_path() . '/Http/Controllers/';
+        $package_folder = __DIR__ . '/../Controllers/';
+
+        $contents = $this->fileSystem->get($package_folder . 'Controller.php');
+
+        // generate the file
+        return $this->fileSystem->put($app_folder . 'Controller.php', $contents);
     }
 
 }
