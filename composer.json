@@ -35,7 +35,8 @@
         "translation",
         "language",
         "localization",
-        "laravel"
+        "laravel",
+        "php"
     ],
     "homepage": "https://github.com/robinNcode/onubadok",
     "repository": "https://github.com/robinNcode/onubadok.git",
